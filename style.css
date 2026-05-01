@@ -31,9 +31,9 @@ body {
     font-size: clamp(0.9rem, 1vw, 1rem);
 }
 
- a, p{
+a, p {
     font-family: 'Poppins', sans-serif;
- }
+}
 
 h1, h2, h3 {
     font-family: 'Inter', sans-serif;
@@ -166,33 +166,43 @@ nav.scrolled .hamburger span {
     height: 100vh;
     min-height: 600px;
     background: url(images/imgHero.jpg) center center/cover no-repeat;
-    background-size: cover;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    text-align: left;
-    padding: 0 7%;
-    color: var(--white);
+    padding: 0 9%;
     position: relative;
 }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to top, var(--gray-50) 0%, transparent 100%);
-    z-index: 2;
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    z-index: 10;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 10;
-    max-width: 900px;
-    padding: clamp(1rem, 3vw, 2rem);
+    max-width: 100%;
     animation: fadeInUp 1s ease-out;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 
 @keyframes fadeInUp {
@@ -377,10 +387,18 @@ section {
     margin-bottom: 0.5rem;
 }
 
-.keunggulan-grid {
+.keunggulan-grid, 
+.product-container, 
+.gallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    width: 100%;
+}
+
+.gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
 }
 
 .keunggulan-box {
@@ -397,6 +415,7 @@ section {
     position: relative;
     overflow: hidden;
 }
+
 .keunggulan-box:hover::before {
     height: 100%;
 }
@@ -445,13 +464,6 @@ section {
     padding: 5rem 9%;
     background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
     position: relative;
-}
-
-.product-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
 }
 
 .product-card-v2 {
@@ -543,12 +555,6 @@ section {
 .galeri {
     background: #f8f9fa;
     padding: 5rem 9%;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
 }
 
 .gallery-item {
@@ -773,169 +779,6 @@ footer {
     letter-spacing: 0.5px;
 }
 
-/* Tablet Responsive - 1024px */
-@media (max-width: 1024px) {
-    .tentang-hero {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-    
-    .tentang-text {
-        text-align: center;
-    }
-    
-    .tentang-text .main-title {
-        text-align: center;
-    }
-    
-    .tentang-image {
-        max-width: 500px;
-        margin: 0 auto;
-        order: -1;
-    }
-    
-    .keunggulan-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .keunggulan-box {
-        border-right: none !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-    }
-    
-    .keunggulan-box:nth-child(2) {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-    }
-    
-    .keunggulan-box:last-child {
-        border-bottom: none;
-    }
-    
-    .product-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Mobile Responsive - 768px */
-@media (max-width: 768px) {
-    .tentang {
-        padding: 2rem 5%;
-    }
-    
-    .tentang-hero {
-        gap: 2rem;
-        margin-bottom: 3rem;
-    }
-    
-    .tentang-text .main-title {
-        font-size: clamp(1.5rem, 5vw, 2rem);
-    }
-    
-    .tentang-text p {
-        font-size: 1rem;
-    }
-    
-    .tentang-image img {
-        border-radius: 8px;
-    }
-    
-    .keunggulan-wrapper {
-        padding: 2rem 1rem;
-        border-radius: 16px;
-    }
-    
-    .keunggulan-box {
-        padding: 1.5rem;
-        background: #ffffff;
-        border-right: none !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-    }
-    
-    .keunggulan-box:last-child {
-        border-bottom: none;
-    }
-    
-    .icon-box {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-    
-    .produk-section {
-        padding: 3rem 5%;
-    }
-    
-    .product-container {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-    }
-    
-    .product-img-v2 {
-        height: 180px;
-    }
-    
-    .galeri {
-        padding: 3rem 5%;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-    }
-    
-    .cta-section {
-        padding: 3rem 5%;
-    }
-    
-    .hamburger {
-        display: flex;
-    }
-    
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        flex-direction: column;
-        background: #EFFBFB;
-        padding: clamp(4rem, 8vw, 5rem) clamp(1.5rem, 3vw, 2rem);
-        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        z-index: 999;
-    }
-    
-    .nav-links.active {
-        left: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .nav-links a {
-        color: var(--gray-800) !important;
-        font-size: clamp(1.1rem, 3vw, 1.2rem);
-        border-bottom: 1px solid var(--gray-100);
-    }
-    
-    footer {
-        padding: 2rem 5% 1.5rem;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .footer-logo {
-        margin-bottom: 0.75rem;
-    }
-}
-
 /* Kontak Section */
 .kontak {
     background: #f8fafc;
@@ -1025,29 +868,343 @@ footer {
     display: block;
 }
 
-/* Tablet Responsive - Kontak */
-@media (max-width: 1024px) {
-    .kontak-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+/* Floating WhatsApp Button Style */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulse-wa 2s infinite;
+}
+
+.whatsapp-icon-img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    color: #FFF;
+}
+/* Animasi Berdenyut (Pulse) */
+@keyframes pulse-wa {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
     }
-    
-    .kontak-map iframe {
-        height: 250px;
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
 }
 
-/* Mobile Responsive - Kontak */
-@media (max-width: 768px) {
-    .kontak {
-        padding: 3rem 5%;
+/* ============================================================
+   RESPONSIVE BREAKPOINTS (Range-Based)
+   ============================================================ */
+
+/* 1. MOBILE (Di bawah 640px) */
+@media screen and (max-width: 639px) {
+    section { padding: 3rem 5%; }
+
+    .hero {
+        text-align: left;
+        padding: 0 5%;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .hero-content {
+        text-align: left;
+    }
+
+    .hero-content p {
+        margin-left: 0;
+    }
+
+    .hero-buttons {
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
     }
     
-    .kontak-item {
-        padding: 1.25rem;
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-content h1 { font-size: 1.75rem; }
+    .hero-image { display: none; }
+    .hero-buttons { justify-content: center; }
+    
+    .tentang-hero {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .tentang-image {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 1rem;
+    }
+
+    .tentang-image img {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 12px;
     }
     
-    .kontak-map iframe {
-        height: 200px;
+    
+    .keunggulan-grid, 
+    .product-container, 
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .keunggulan-box {
+        padding: 1.5rem;
+        background: #ffffff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    }
+    
+    .keunggulan-box:last-child {
+        border-bottom: none;
+    }
+    
+    .icon-box {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .product-img-v2 { height: 180px; }
+    .galeri { padding: 3rem 5%; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+    
+    .kontak-content { grid-template-columns: 1fr; gap: 2rem; }
+    .kontak-map iframe { height: 250px; }
+    
+    .cta-section { padding: 3rem 5%; }
+    
+    .hamburger { display: flex; }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        background: #EFFBFB;
+        padding: clamp(4rem, 8vw, 5rem) clamp(1.5rem, 3vw, 2rem);
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .nav-links a {
+        color: var(--gray-800) !important;
+        font-size: clamp(1.1rem, 3vw, 1.2rem);
+        border-bottom: 1px solid var(--gray-100);
+    }
+    
+    footer { padding: 2rem 5% 1.5rem; }
+    .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer-logo { margin-bottom: 0.75rem; }
+
+    .whatsapp-float {
+        width: 70px;
+        height: 70px;
+        bottom: 40px;
+        right: 30px;
+    }
+    .whatsapp-icon-img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* 2. TABLET (640px - 1023px) */
+@media screen and (min-width: 640px) and (max-width: 1023px) {
+    
+    .hamburger { 
+        display: flex; 
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        background: #EFFBFB;
+        padding: 5rem 2rem;
+        transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links a {
+        color: var(--gray-800) !important;
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    section { 
+        padding: 3rem 5%; 
+    }
+
+    .hero-content {
+        text-align: left;
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: auto;
+    }
+
+    .hero-buttons .btn {
+        width: auto;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.75rem, 6vw, 3rem); /* Mengikuti skala ukuran desktop/laptop */
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.15rem;
+        max-width: 90%;
+    }
+
+    .tentang-hero {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .tentang-image {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .tentang-image img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+    
+    .keunggulan-grid, 
+    .product-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-image { display: none; }
+    
+    .footer-content { grid-template-columns: repeat(2, 1fr); }
+    
+    .kontak-content { grid-template-columns: 1fr; gap: 2rem; }
+    .kontak-map iframe { height: 250px; }
+}
+
+/* 3. SMALL DESKTOP / LAPTOP (1024px - 1279px) */
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+    .hamburger { 
+        display: none; 
+    }
+    
+    .nav-links {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        height: auto;
+        background: transparent;
+        box-shadow: none;
+        left: 0;
+    }
+
+    .hero-container {
+        grid-template-columns: 1.2fr 0.8fr;
+    }
+    .hero-image { display: flex; }
+    .hero-content { text-align: left; }
+    
+    .tentang-hero { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .footer-content { grid-template-columns: 1.5fr repeat(3, 1fr); }
+
+    .product-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 1.5rem;
+    }
+
+    .keunggulan-grid,
+    .gallery-grid{
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 2rem;
+    }
+}
+
+/* 4. LARGE DESKTOP (1280px Ke Atas) */
+@media screen and (min-width: 1280px) {
+    section { padding: 5rem 12%; }
+    .hero-container { gap: 4rem; }
+    .hero-content h1 { font-size: 3.5rem; }
+
+    .keunggulan-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 100%;
+        margin: 0;
+    }
+
+    .product-container,
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
     }
 }
